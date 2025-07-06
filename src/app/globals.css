@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+    .markdown-container {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            /*margin-top: 1.15em;*/
+            margin-bottom: 0.3em;
+            font-weight: bold;
+        }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+        h1 {
+            font-size: var(--text-3xl);
+        }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+        h2 {
+            font-size: var(--text-2xl);
+        }
+
+        h3 {
+            font-size: var(--text-xl);
+        }
+
+        h4 {
+            font-size: var(--text-lg);
+        }
+
+        p,
+        ul,
+        ol,
+        blockquote,
+        pre {
+            margin-bottom: 1em;
+            font-size: calc(var(--text-base) * 1.1);
+        }
+
+        ul, ol {
+            list-style: revert;
+            margin-left: 15px;
+        }
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
+    background-color: #1E1E1E; /* A dark background color */
+}
+
+.font-pixel {
+    font-family: 'Press Start 2P', cursive;
+}
+
+.btn-pixel {
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0 0 #000;
+    transition: all 0.1s ease-in-out;
+}
+
+.btn-pixel:active {
+    transform: translateY(4px) translateX(4px);
+    box-shadow: 0 0 0 0 #000;
+}
+
+.bg-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233a3a3a' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: move-pattern 10s linear infinite;
+}
+
+@keyframes move-pattern {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 60px 60px;
+    }
+}
+
+img {
+    image-rendering: pixelated;
+}
+
+.markdown-container {
+    color: #dfdfd9;
+    line-height: calc(var(--text-base--line-height) * 1.2);
 }
