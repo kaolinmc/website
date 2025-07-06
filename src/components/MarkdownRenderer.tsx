@@ -1,6 +1,6 @@
 "use client"
 
-import React, {ReactNode, useState} from 'react';
+import React, {useState} from 'react';
 import ReactMarkdown from 'react-markdown';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {darcula} from 'react-syntax-highlighter/dist/cjs/styles/prism';
@@ -56,21 +56,22 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({markdown}) => {
         <div className={"markdown-container"}>
             <ReactMarkdown
                 components={{
-                    hr({node, className, children, ...props}) {
+                    hr({}) {
                         return <div className={"border-t border-gray-200 dark:border-gray-700"}></div>
                     },
-                    a({node, className, children, href, ...props}) {
+                    a({children, href}) {
                         if (href) {
                             return <Link className={"underline"} href={href}>{children}</Link>
                         }
                         return <p>{children}</p>
                     },
-                    code({node, className, children, ...props}) {
+                    code({className, children, ...props}) {
                         const match = /language-(\w+)/.exec(className || '');
                         console.log(match)
                         return match ? (
                             <SyntaxHighlighter
                                 showLineNumbers={true}
+                                // @ts-expect-error it actually works trust
                                 style={darcula}
                                 language={match[1]}
                                 PreTag={CodeSnippetBlock}

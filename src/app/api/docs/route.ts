@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { marked } from 'marked';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);

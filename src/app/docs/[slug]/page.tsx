@@ -8,16 +8,6 @@ import Head from "next/head";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import {redirect} from "next/navigation";
 
-interface DocPageProps {
-    content: string;
-    data: {
-        title: string;
-        order?: number;
-    };
-    slug: string;
-    allDocs: Array<{ slug: string; title: string; order?: number }>;
-}
-
 export default function Page(
     {
         params,

@@ -109,7 +109,7 @@ const GetStarted = () => (
 );
 
 export default function Page() {
-    let links = [
+    const links = [
         {
             href: "#features",
             text: "Features"

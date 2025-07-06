@@ -23,7 +23,7 @@ const DownloadPage = () => {
                             Kaolin is in Beta!
                         </h2>
                         <p className="text-lg text-gray-300 mb-8">
-                            We're currently hard at work polishing Kaolin for its first public release.
+                            We&apos;re currently hard at work polishing Kaolin for its first public release.
                             During this phase, builds are only available to developers through our Gradle Plugin.
                         </p>
                         <p className="text-md text-gray-400 mb-8">
