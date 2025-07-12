@@ -33,7 +33,6 @@ const ExtensionSearch: React.FC = () => {
     const [pagination] = useState(10);
     const [modalOpen, setModalOpen] = useState(false);
     const [repositoryInputTarget, setRepositoryInputTarget] = useState("");
-    // Define queryServer function (assuming it's an async function that fetches extensions)
     const [queryingServer, setQueryingServer] = useState(true)
 
     const doQuery = useCallback(() => {
@@ -50,20 +49,10 @@ const ExtensionSearch: React.FC = () => {
                 console.log("Error occurred")
                 // TODO alerts
             })
-    }, [])
+    }, [searchTarget])
 
     useEffect(() => {
         doQuery()
-        // setQueryingServer(true)
-        // queryServer("https://repo.kaolinmc.com", "", page, pagination)
-        //     .then((res) => {
-        //         setQueryingServer(false)
-        //         setExtensions(res)
-        //     })
-        //     .catch((res) => {
-        //         setQueryingServer(false)
-        //         // TODO alerts
-        //     })
     }, [doQuery])
 
     useEffect(() => {
@@ -85,7 +74,7 @@ const ExtensionSearch: React.FC = () => {
                 })}
             </>)
         }
-    }, [extensions, searchTarget, queryingServer])
+    }, [extensions, queryingServer])
 
     return <div className={"pt-20 ml-3 mr-3 align-middle"}>
         <form onSubmit={async (it) => {
@@ -100,7 +89,6 @@ const ExtensionSearch: React.FC = () => {
                     className="shadow appearance-none border rounded w-md py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-zinc-700 border-zinc-600"
                     onChange={(it) => {
                         setSearchTarget(it.target.value)
-                        doQuery()
                     }} value={searchTarget}/>
                 <button type="button"
                         className="ml-2 bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
