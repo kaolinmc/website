@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import {ExtensionMetadata, ExtensionPointer, WrappedExtension} from "@/components/util";
 import Image from "next/image";
 import defaultIcon from "@/app/extensions/default_icon.png";
-import MarkdownRenderer, {CodeSnippetBlock} from "@/components/MarkdownRenderer";
+import {CodeSnippetBlock} from "@/components/MarkdownRenderer";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
 import {darcula} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import {ExtensionNotFound} from "@/components/ExtensionNotFound";
@@ -55,7 +55,7 @@ const Content: React.FC<{
       }) => {
     const [group, artifact, version] = extension.pointer.descriptor.split(":")
 
-    let tomlCode = `[parents]\n${artifact} = {group = "${group}", version = "${version}"}`;
+    const tomlCode = `[parents]\n${artifact} = {group = "${group}", version = "${version}"}`;
     return (
         <div className="container mx-auto p-4 md:p-8">
             <div className="bg-zinc-800 rounded-lg shadow-lg p-6 md:p-8">
@@ -127,21 +127,23 @@ export default function ExtensionPage({
 }) {
     const {slug} = use(params)
 
-    const version = slug[slug.length - 1]
-    const artifact = slug[slug.length - 2]
-    const group = slug.slice(0, slug.length - 2)
+
 
     const [extension, setExtension] = useState<WrappedExtension | RetrievalError | null>(null)
 
     useEffect(() => {
+        const version = slug[slug.length - 1]
+        const artifact = slug[slug.length - 2]
+        const group = slug.slice(0, slug.length - 2)
+
         const metadataQuery = `https://repo.kaolinmc.com/registry/` +
             `${group.join("/")}/` +
             `${artifact}/` +
             `${version}/${artifact}-${version}-metadata.json`;
 
         const doFetch = async () => {
-            let query = await fetch(metadataQuery);
-            let json = await query.json();
+            const query = await fetch(metadataQuery);
+            const json = await query.json();
 
             if (!query.ok) return {
                 error: query.statusText,

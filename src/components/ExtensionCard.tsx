@@ -1,4 +1,4 @@
-import React, {Key, MouseEventHandler} from 'react';
+import React, {MouseEventHandler} from 'react';
 import {WrappedExtension} from "@/components/util";
 import defaultIcon from "@/app/extensions/default_icon.png"
 import Image from "next/image";
@@ -62,11 +62,10 @@ const ExtensionCard: React.FC<{
     );
 };
 
-export const ExtensionCardSkeleton: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({className, ...props}) => {
+export const ExtensionCardSkeleton: React.FC = () => {
     return (
         <div
             className="flex items-center p-4 bg-zinc-800 rounded-lg shadow-md w-full md:max-w-lg mx-auto my-4 animate-pulse"
-            {...props}
         >
             <div className="flex justify-between items-center mb-1 w-full">
                 <div

@@ -4,13 +4,13 @@ export const queryServer = async (server: string, query: string, page: number = 
     const url = `${server}/search?query=${encodeURIComponent(query)}&page=${page}&pagination=${pagination}`;
 
     console.log(url)
-    let result = (await (await fetch(url)).json()) as SearchResult;
+    const result = (await (await fetch(url)).json()) as SearchResult;
 
-    let managedMetadata = await Promise.all(result.result.map(async (identifier) => {
+    const managedMetadata = await Promise.all(result.result.map(async (identifier) => {
         const metadataQuery = `${server}/metadata/${identifier.group.replace('.', '/')}/${identifier.name}`;
 
-        let it1 = await fetch(metadataQuery);
-        let it2 = await it1.json();
+        const it1 = await fetch(metadataQuery);
+        const it2 = await it1.json();
 
         return {
             metadata: it2 as ManagedExtensionMetadata,
@@ -18,8 +18,8 @@ export const queryServer = async (server: string, query: string, page: number = 
         };
     }))
 
-    let metadata = await Promise.all(managedMetadata.map(async (managed) => {
-        let release = managed.metadata.latest.release ?? managed.metadata.latest.rc ?? managed.metadata.latest.beta
+    const metadata = await Promise.all(managedMetadata.map(async (managed) => {
+        const release = managed.metadata.latest.release ?? managed.metadata.latest.rc ?? managed.metadata.latest.beta
         if (!release) {
             throw new Error("No Release found!")
         }
@@ -29,8 +29,8 @@ export const queryServer = async (server: string, query: string, page: number = 
             `${managed.id.name}/` +
             `${release}/${managed.id.name}-${release}-metadata.json`;
 
-        let it1 = await fetch(metadataQuery);
-        let it2 = await it1.json();
+        const it1 = await fetch(metadataQuery);
+        const it2 = await it1.json();
         return {
             metadata: it2 as ExtensionMetadata,
             pointer: {

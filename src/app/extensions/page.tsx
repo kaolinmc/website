@@ -2,9 +2,9 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import ExtensionCard, {ExtensionCardSkeleton} from "@/components/ExtensionCard";
-import {ExtensionPointer, queryServer, WrappedExtension} from "@/components/util";
+import {queryServer, WrappedExtension} from "@/components/util";
 import {ExtensionNotFound} from "@/components/ExtensionNotFound";
 
 
@@ -30,27 +30,27 @@ const ExtensionSearch: React.FC = () => {
         "https://repo.kaolinmc.com"
     ])
     const [page, setPage] = useState(0);
-    const [pagination, setPagination] = useState(1000);
+    const [pagination] = useState(10);
     const [modalOpen, setModalOpen] = useState(false);
     const [repositoryInputTarget, setRepositoryInputTarget] = useState("");
     // Define queryServer function (assuming it's an async function that fetches extensions)
     const [queryingServer, setQueryingServer] = useState(true)
 
-    const doQuery = () => {
+    const doQuery = useCallback(() => {
         setQueryingServer(true)
         Promise.all(repositories.map(async (repo) => {
             return await queryServer(repo, searchTarget, page, pagination)
         })).then((res) => {
             setQueryingServer(false)
-            let flatMap = res.flatMap((it) => it)
+            const flatMap = res.flatMap((it) => it)
             setExtensions(flatMap)
         })
-            .catch((res) => {
+            .catch(() => {
                 setQueryingServer(false)
                 console.log("Error occurred")
                 // TODO alerts
             })
-    }
+    }, [])
 
     useEffect(() => {
         doQuery()
@@ -64,7 +64,7 @@ const ExtensionSearch: React.FC = () => {
         //         setQueryingServer(false)
         //         // TODO alerts
         //     })
-    }, [])
+    }, [doQuery])
 
     useEffect(() => {
         if (queryingServer) {

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export const ExtensionNotFound: React.FC = () => {
     return (
@@ -20,12 +21,12 @@ export const ExtensionNotFound: React.FC = () => {
                 </svg>
                 <h2 className="text-3xl font-bold text-white mb-4">Extension Not Found</h2>
                 <p className="text-gray-300 text-lg mb-6">
-                    We couldn't find the extension you're looking for. It might have been moved or removed.
+                    We couldn&apos;t find the extension you&apos;re looking for. It might have been moved or removed.
                 </p>
-                <a href="/extensions"
+                <Link href="/extensions"
                    className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
                     Go to Homepage
-                </a>
+                </Link>
             </div>
         </div>
     );

@@ -109,17 +109,6 @@ const GetStarted = () => (
 );
 
 export default function Page() {
-    const links = [
-        {
-            href: "#features",
-            text: "Features"
-        },
-        {
-            href: "#get-started",
-            text: "Get started"
-        }
-    ];
-
     return (
         <div>
             <Header/>
