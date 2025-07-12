@@ -8,13 +8,12 @@ import {DISCORD_INVITE} from "@/components/util";
 const DownloadPage = () => {
     return (
         <>
-            <Header links={[]}></Header>
+            <Header></Header>
             <div className="min-h-screen flex items-center justify-center text-white pt-20 pb-20">
                 <div className="container mx-auto px-6 text-center">
                     <h1 className="mt-10 font-pixel text-4xl md:text-6xl lg:text-7xl mb-12">
                         Downloads
                     </h1>
-
                     <div className="max-w-3xl mx-auto bg-gray-900 p-8 rounded-lg border-2 border-gray-700 shadow-lg">
                         <div className="w-full flex justify-center mb-6">
                             <Image src={logo} alt="Kaolin Logo" className="h-24 w-24"/>

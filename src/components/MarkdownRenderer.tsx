@@ -10,7 +10,7 @@ interface CodeSnippedProps extends React.HTMLAttributes<HTMLDivElement> {
     codeText: string
 }
 
-const CodeSnippetBlock: React.FC<CodeSnippedProps> = ({codeText, children, ...props}) => {
+export const CodeSnippetBlock: React.FC<CodeSnippedProps> = ({codeText, children, ...props}) => {
     const [hover, setHover] = useState(false)
     const [clicked, setClicked] = useState(false)
 

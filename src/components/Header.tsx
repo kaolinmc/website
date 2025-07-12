@@ -7,7 +7,7 @@ import Link from "next/link";
 import {useState} from "react";
 import github_logo from "./github-mark.svg"
 
-const Header: React.FC<{ links: { href: string, text: string }[] }> = ({links}) => {
+const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -25,10 +25,8 @@ const Header: React.FC<{ links: { href: string, text: string }[] }> = ({links}) 
                     zIndex: 25
                 }}
                      className={`md:flex items-center space-x-8 ${isOpen ? 'block' : 'hidden'} absolute md:relative top-full left-0 w-full md:w-auto bg-gray-800 md:bg-transparent p-4 md:p-0 flex-col md:flex-row`}>
-                    {
-                        links.map((link, index) => <Link key={index} href={link.href}
-                                                         className="hover:text-amber-300 transition-colors block py-2 md:py-0">{link.text}</Link>)
-                    }
+
+                    <Link href="/extensions" className="hover:text-amber-300 transition-colors block py-2 md:py-0">Extensions</Link>
                     <Link href="/docs" className="hover:text-amber-300 transition-colors block py-2 md:py-0">Docs</Link>
                     <Link href={"https://github.com/kaolinmc"}>{
                         <Image className={"size-6 "} src={github_logo} alt={"Github"} />

@@ -122,7 +122,7 @@ export default function Page() {
 
     return (
         <div>
-            <Header links={links}/>
+            <Header/>
             <Hero/>
             <Features/>
             <GetStarted/>

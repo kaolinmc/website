@@ -63,7 +63,7 @@ export default function Page(
                 <meta name="description" content={docData.title}/>
             </Head>
 
-            <Header links={[]}/>
+            <Header/>
 
             <div className="min-h-screen text-gray-900 dark:text-gray-100 flex flex-col pt-20">
                 <div className="flex-grow flex max-w-7xl mx-auto w-full py-8">
