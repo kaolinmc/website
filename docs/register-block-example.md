@@ -6,22 +6,13 @@ order: 6
 To begin, first define your Entrypoint class in your Minecraft partition.
 
 ```kotlin
-// src/latest/kotlin/com/example/myextension/Latest
+// src/1.21.4/kotlin/com/example/myextension/V1_21_4
 
-class Latest : Entrypoint() {
+class V1_21_4 : Entrypoint() {
     override fun init() {
+        onInit {
 
-    }
-}
-```
-
-Next we are going to want to hook into the initialization phase of Minecraft, we do this with the `onInit` event hook.
-
-```kotlin
-// src/latest/kotlin/com/example/myextension/Latest
-override fun init() {
-    onInit {
-
+        }
     }
 }
 ```
@@ -36,31 +27,20 @@ val location = ResourceLocation.fromNamespaceAndPath(
 )
 
 val blockKey: ResourceKey<Block> = ResourceKey.create(Registries.BLOCK, location)
-```
 
-Next lets instantiate a Block instance:
-
-```kotlin
+// Next lets instantiate a Block instance:
 val exampleBlock = Block(
     BlockBehaviour.Properties.of().setId(blockKey)
 )
-```
 
-And lastly register it with its registry:
-
-```kotlin
+// And lastly register it with its registry:
 Registry.register(BuiltInRegistries.BLOCK, blockKey, exampleBlock)
-```
 
-Now, lets create our block item, this is the item that will be in your inventory and allow you to place your block.
-
-```kotlin
+// Now, lets create our block item, this is the item that
+// will be in your inventory and allow you to place your block.
 val blockItemKey: ResourceKey<Item> = ResourceKey.create(Registries.ITEM, location)
-```
 
-With our key done, we can go ahead and create our block + register it.
-
-```kotlin
+// With our key done, we can go ahead and create our block + register it.
 val blockItem = BlockItem(exampleBlock, Item.Properties().setId(blockItemKey))
 
 Registry.register(
@@ -79,11 +59,7 @@ Perfect! Now open Minecraft and give yourself your newly created block.
 
 Finally, we need to texture this image. We can do so by creating the following folders: `src/main/resources/assets/myextension`.
 
-Note how It's totally fine to have assets under the `main` partition because assets are version independent. However, in the case that the directory layout, or your assets are version specific, you can also put them under a Minecraft partition's resource folder.
-
-Now add the following files under your newly created directory tree:
-
-`blockstates/myblock.json`:
+`src/main/resources/assets/myextension/blockstates/myblock.json`:
 ```json
 {
   "variants": {
@@ -94,7 +70,7 @@ Now add the following files under your newly created directory tree:
 }
 ```
 
-`items/myblock.json`:
+`src/main/resources/assets/myextension/items/myblock.json`:
 ```json
 {
   "model": {
@@ -104,7 +80,7 @@ Now add the following files under your newly created directory tree:
 }
 ```
 
-`models/block/myblock.json`:
+`src/main/resources/assets/myextension/models/block/myblock.json`:
 ```json
 {
   "parent": "minecraft:block/cube_all",
@@ -116,7 +92,7 @@ Now add the following files under your newly created directory tree:
 
 And finally add a texture for your block, here is one we've used:
 
-`textures/block/myblock.png`: ![Image](/static/myblock_texture.png)
+`src/main/resources/assets/myextension/textures/block/myblock.png`: ![Image](/static/myblock_texture.png)
 
 Now, launch again, and you should see that your block is textured.
 

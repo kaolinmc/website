@@ -95,7 +95,7 @@ const GetStarted = () => (
             <h2 className="font-pixel text-3xl md:text-4xl text-center mb-12">Get Started in 3 Steps</h2>
             <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <GetStartedStep number="1" title="Install">
-                    Install the Kaolin Kiln in your Gradle project
+                    <Link className={"underline"} href={"/docs"}>Install</Link> the Kaolin Kiln in your Gradle project
                 </GetStartedStep>
                 <GetStartedStep number="2" title="Read">
                     Read the <Link className={"underline"} href={"/docs"}>Documentation</Link>

@@ -11,7 +11,7 @@ To start, make a capability declaration statically in your Entrypoint class (or 
 
 ```kotlin
 // src/main/kotlin/org/example/myextension/MyExtension.kt
-class MyExtension : Extension() {
+class MyExtension : Entrypoint() {
     companion object {
         val println by TargetCapabilities.defining<Capability1<String, Unit>>()
     }
@@ -41,7 +41,7 @@ Done! It's that simple! Now in our Extension entrypoint class in `main` we can c
 
 ```kotlin
 // src/main/kotlin/org/example/myextension/MyExtension.kt
-class MyExtension : Extension() {
+class MyExtension : Entrypoint() {
     companion object {
         val println by TargetCapabilities.defining<Capability1<String, Unit>>()
     }

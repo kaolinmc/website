@@ -17,13 +17,12 @@ export async function GET(request: Request) {
     try {
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
-        // const htmlContent = marked(content);
 
         const allDocs = fs.readdirSync(docsDirectory).map((filename) => {
             const fileSlug = filename.replace(/\.md$/, '');
             const fileContent = fs.readFileSync(path.join(docsDirectory, filename), 'utf8');
             const { data: fileData } = matter(fileContent);
-            return { slug: fileSlug, title: fileData.title || fileSlug, order: fileData.order };
+            return { slug: fileSlug, title: fileData.title || fileSlug, order: fileData.order, ignore: (fileData.ignore ?? false) };
         });
 
         return NextResponse.json({ content: content, data, slug, allDocs });

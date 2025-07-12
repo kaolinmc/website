@@ -1,9 +1,8 @@
 ---
-title: Overview
-order: 2
+title: Design Philosophy
+order: 12
+ignore: true
 ---
-
-# Design Philosophy
 
 Kaolin is designed with simplicity in mind. Once you get over the quirks that make it different from other mod loaders,
 intuition is key; if it feels like it should work a certain way, it probably does. For this reason, Kaolin is broken

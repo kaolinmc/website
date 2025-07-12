@@ -9,7 +9,7 @@ Out of the box Kaolin comes with full extension hot swapping during runtime. Unl
 
 This powerful capability comes from Kaolin's built in loading + unloading of extensions at runtime and powerful mixin library. 
 
-## How to
+### How to
 
 To hot swap in your own project, launch Minecraft and then run the following Gradle commands.
 
@@ -25,9 +25,11 @@ Note: As of right now, you MUST run these two commands on separate lines otherwi
 
 Also note: Dynamic reloading of Minecraft registries is not fully supported and is a goal in the MDK.
 
+---
+
 ## Access Tweaking (Widening)
 
-## Often there are private or final methods / fields that we want to access, override, or overwrite. In Kaolin this is easy, simply apply the following extension to automatically open the access of all methods, fields, and classes. 
+Often there are private or final methods / fields that we want to access, override, or overwrite. In Kaolin this is easy, simply apply the following extension to automatically open the access of all methods, fields, and classes. 
 
 ```text
 access-tweaks = { group = "com.kaolinmc.extension", version = "1.0.6-BETA", use = "central" }

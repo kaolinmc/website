@@ -18,7 +18,7 @@ export default function Page(
 
     const [docContent, setDocContent] = useState<string>("Documentation not found... Redirecting");
     const [docData, setDocData] = useState<{ title: string; order?: number }>({title: ''});
-    const [allDocsData, setAllDocsData] = useState<Array<{ slug: string; title: string; order?: number }>>([]);
+    const [allDocsData, setAllDocsData] = useState<Array<{ slug: string; title: string; order?: number, ignore: boolean }>>([]);
     const [asideOpen, setAsideOpen] = useState(false)
 
     useEffect(() => {
@@ -52,7 +52,9 @@ export default function Page(
         );
     }
 
-    const sortedDocs = [...allDocsData].sort((a, b) => (a.order || Infinity) - (b.order || Infinity));
+    const sortedDocs = [...allDocsData]
+        .sort((a, b) => (a.order || Infinity) - (b.order || Infinity))
+        .filter((doc) => !doc.ignore);
 
     return (
         <>
