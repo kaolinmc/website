@@ -7,7 +7,7 @@ Through Kaolin's powerful design, integration with other Mod loaders is complete
 
 To your `extension.toml` file, add the following:
 ```toml
-fabric-ext = { group = "com.kaolinmc.integrations", version = "1.0.8-BETA", use = "central" }
+fabric-ext = { group = "com.kaolinmc.integrations", version = "1.0.8-BETA" }
 ```
 
 After invalidating and reloading, you should be able to consume fabric mods off Modrinth in your `build.gradle.kts` file like the following:

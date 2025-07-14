@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const ExtensionNotFound: React.FC = () => {
     return (
-        <div className="flex items-center justify-center min-h-[50vh] px-4 m-5 mb-20">
+        <div className="flex items-center justify-center min-h-[50vh] px-4 m-20">
             <div className="text-center bg-zinc-800 rounded-lg shadow-lg p-8 md:p-12 max-w-md w-full">
                 <svg
                     className="mx-auto h-24 w-24 text-red-500 mb-6"
@@ -24,7 +24,7 @@ export const ExtensionNotFound: React.FC = () => {
                     We couldn&apos;t find the extension you&apos;re looking for. It might have been moved or removed.
                 </p>
                 <Link href="/extensions"
-                   className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                   className="inline-block bg-amber-500 hover:bg-amber-400 text-black font-bold py-3 px-6 rounded-lg transition duration-300">
                     Go to Homepage
                 </Link>
             </div>

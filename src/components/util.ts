@@ -1,6 +1,6 @@
 export const DISCORD_INVITE = "https://discord.gg/dpGxnEtnw3"
 
-export const queryServer = async (server: string, query: string, page: number = 0, pagination: number = 10): Promise<WrappedExtension[]> => {
+export const queryServer = async (server: string, query: string, page: number, pagination: number): Promise<WrappedExtension[]> => {
     const url = `${server}/search?query=${encodeURIComponent(query)}&page=${page}&pagination=${pagination}`;
 
     console.log(url)

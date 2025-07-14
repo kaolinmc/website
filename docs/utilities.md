@@ -31,7 +31,7 @@ Also note: Dynamic reloading of Minecraft registries is not fully supported and 
 
 Often there are private or final methods / fields that we want to access, override, or overwrite. In Kaolin this is easy, simply apply the following extension to automatically open the access of all methods, fields, and classes. 
 
-```text
-access-tweaks = { group = "com.kaolinmc.extension", version = "1.0.6-BETA", use = "central" }
+```toml
+access-tweaks = { group = "com.kaolinmc.extension", version = "1.0.6-BETA" }
 ```
 

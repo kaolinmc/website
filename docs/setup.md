@@ -1,5 +1,5 @@
 ---
-title: Finishing setup 
+title: Initial Setup 
 order: 3
 ---
 

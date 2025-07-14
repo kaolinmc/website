@@ -34,7 +34,7 @@ Next add the Kaolin Kiln Gradle plugin to your project.
 // build.gradle.kts
 plugins {
     id("maven-publish")
-    id("kaolin.kiln") version "0.1"
+    id("kaolin.kiln") version "0.1.5"
 }
 ```
 
@@ -45,7 +45,7 @@ Kaolin relies on extra metadata in the `extension.toml` file in the root directo
 ```toml
 # extension.toml
 [parents]
-mdk = { group = "com.kaolinmc", version = "1.0.1-BETA", use = "central" }
+mdk = { group = "com.kaolinmc", version = "1.0.2-BETA" }
 ```
 
 ### Step 4: Reload gradle

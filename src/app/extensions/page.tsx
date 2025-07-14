@@ -35,25 +35,25 @@ const ExtensionSearch: React.FC = () => {
     const [repositoryInputTarget, setRepositoryInputTarget] = useState("");
     const [queryingServer, setQueryingServer] = useState(true)
 
-    const doQuery = useCallback(() => {
+    useEffect(() => {
         setQueryingServer(true)
         Promise.all(repositories.map(async (repo) => {
+            console.log(page)
             return await queryServer(repo, searchTarget, page, pagination)
         })).then((res) => {
             setQueryingServer(false)
             const flatMap = res.flatMap((it) => it)
             setExtensions(flatMap)
+        }).catch(() => {
+            setQueryingServer(false)
+            console.log("Error occurred")
+            // TODO alerts
         })
-            .catch(() => {
-                setQueryingServer(false)
-                console.log("Error occurred")
-                // TODO alerts
-            })
-    }, [searchTarget])
+    }, [searchTarget, page, pagination, repositories])
 
-    useEffect(() => {
-        doQuery()
-    }, [doQuery])
+    // useEffect(() => {
+    //     doQuery(0)
+    // }, [])
 
     useEffect(() => {
         if (queryingServer) {
@@ -77,9 +77,10 @@ const ExtensionSearch: React.FC = () => {
     }, [extensions, queryingServer])
 
     return <div className={"pt-20 ml-3 mr-3 align-middle"}>
+        <h1 className={"text-xl font-bold text-white m-5 text-center"}>Extension Repository Index</h1>
         <form onSubmit={async (it) => {
             it.preventDefault()
-            doQuery()
+            // doQuery(page)
         }}>
             <div className="flex items-center justify-center">
                 <input
@@ -88,6 +89,7 @@ const ExtensionSearch: React.FC = () => {
                     placeholder={"Search Extensions"}
                     className="shadow appearance-none border rounded w-md py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-zinc-700 border-zinc-600"
                     onChange={(it) => {
+                        setPage(0)
                         setSearchTarget(it.target.value)
                     }} value={searchTarget}/>
                 <button type="button"
@@ -154,28 +156,30 @@ const ExtensionSearch: React.FC = () => {
         {
             extensionContent
         }
-        <div className="flex justify-center my-4">
-            <button
-                className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                onClick={() => {
-                    if (page > 0) {
-                        setPage(page - 1);
-                        doQuery();
-                    }
-                }}
-            >
-                Previous
-            </button>
-            <span className={"font-bold my-2 mx-4"}>
+        {extensions.length != 0 &&
+            <div className="flex justify-center my-4">
+                <button
+                    className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    onClick={() => {
+                        if (page > 0) {
+                            setPage(page - 1);
+                            // doQuery(page - 1);
+                        }
+                    }}
+                >
+                    Previous
+                </button>
+                <span className={"font-bold my-2 mx-4"}>
                 Page {page + 1}
             </span>
-            <button
-                className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                onClick={() => {
-                    setPage(page + 1);
-                    doQuery();
-                }}>Next
-            </button>
-        </div>
+                <button
+                    className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    onClick={() => {
+                        if (extensions.length == pagination && !queryingServer) setPage(page + 1);
+                        // doQuery(page + 1);
+                    }}>Next
+                </button>
+            </div>
+        }
     </div>
 }
