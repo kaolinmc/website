@@ -2,7 +2,7 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import ExtensionCard, {ExtensionCardSkeleton} from "@/components/ExtensionCard";
 import {queryServer, WrappedExtension} from "@/components/util";
 import {ExtensionNotFound} from "@/components/ExtensionNotFound";
