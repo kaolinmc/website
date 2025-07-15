@@ -46,7 +46,7 @@ export default function Page(
     if (!slug) {
         return (
             <div
-                className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col items-center justify-center">
+                className="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center justify-center">
                 Loading documentation...
             </div>
         );
@@ -65,7 +65,7 @@ export default function Page(
 
             <Header/>
 
-            <div className="min-h-screen text-gray-900 dark:text-gray-100 flex flex-col pt-20">
+            <div className="min-h-screen text-gray-100 flex flex-col pt-20">
                 <div className="flex-grow flex max-w-7xl mx-auto w-full py-8">
                     {/* Mobile aside overlay */}
                     {asideOpen && (
@@ -77,21 +77,21 @@ export default function Page(
 
                     {/*Aside navigation*/}
                     <aside
-                        className={`bg-white dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent fixed inset-y-0 left-0 w-64 z-50 transform ${
+                        className={`bg-gray-800 md:bg-transparent md:dark:bg-transparent fixed inset-y-0 left-0 w-64 z-50 transform ${
                             asideOpen ? 'translate-x-0' : '-translate-x-full'
-                        } md:relative md:translate-x-0 md:w-64 flex-shrink-0 pr-8 border-r border-gray-200 dark:border-gray-700 overflow-y-auto transition-transform duration-300 ease-in-out`}
+                        } md:relative md:translate-x-0 md:w-64 flex-shrink-0 pr-8 border-r border-gray-700 overflow-y-auto transition-transform duration-300 ease-in-out`}
                     >
                         <div className="p-4">
                             <nav className="space-y-2">
-                                <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300 ml-2">Documentation</h3>
+                                <h3 className="text-lg font-semibold mb-4 text-gray-300 ml-2">Documentation</h3>
                                 {sortedDocs.map((doc) => (
                                     <Link
                                         key={doc.slug}
                                         href={`/docs/${doc.slug}`}
                                         className={`block py-2 px-3 rounded-md transition-colors duration-200 ${
                                             slug === doc.slug
-                                                ? 'bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 font-medium'
-                                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                                                ? 'bg-indigo-900 text-indigo-300 font-medium'
+                                                : 'text-gray-400 hover:bg-gray-800'
                                         }`}
                                         onClick={() => setAsideOpen(false)}
                                     >
@@ -108,7 +108,7 @@ export default function Page(
                             <div className="md:hidden">
                                 <button
                                     onClick={() => setAsideOpen(!asideOpen)}
-                                    className=" text-gray-600 dark:text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                    className=" text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          strokeWidth={1.5} stroke="currentColor" className="size-6 h-6 w-6"
@@ -118,7 +118,7 @@ export default function Page(
                                     </svg>
                                 </button>
                             </div>
-                            <h1 className="text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-5">{docData.title}</h1>
+                            <h1 className="text-4xl font-extrabold text-gray-100 mb-5">{docData.title}</h1>
                         </div>
                         <MarkdownRenderer markdown={docContent}/>
                     </article>

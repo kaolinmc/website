@@ -34,7 +34,7 @@ Next add the Kaolin Kiln Gradle plugin to your project.
 // build.gradle.kts
 plugins {
     id("maven-publish")
-    id("kaolin.kiln") version "0.1.5"
+    id("kaolin.kiln") version "0.1.6"
 }
 ```
 
